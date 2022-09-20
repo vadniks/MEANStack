@@ -1,0 +1,20 @@
+# For local tests
+version: '3'
+services:
+  app:
+    build: .
+    command: node backend/server.js 8081
+    container_name: ng-app
+    ports:
+      - 8081:8081
+    working_dir: /app
+#  db:
+#    image: mongo
+#    ports:
+#      - 27017:27017
+#    container_name: mongo-db
+#    volumes:
+#      - db:/data/db
+
+volumes:
+  db:
