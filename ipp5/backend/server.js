@@ -68,6 +68,6 @@ app.put("/contacts/:id", (req , res) => {
 })
 app.delete("/contacts/:id", (req , res) => {
     const id = getIdParam(req)
-    contactsCollection().deleteOne(mkIdQuery(id), (err, $res) => {
-        console.log($res.acknowledged + ' ' + id); res.send($res.acknowledged ? id : null)})
+    contactsCollection().deleteOne(mkIdQuery(id), (err, $res) =>
+        res.send($res.acknowledged ? id : null))
 })
