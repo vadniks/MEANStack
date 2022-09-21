@@ -24,5 +24,5 @@ export class ContactDetailsComponent {
 
     delete(): void { if (this.contact && this.contact._id) this.service.delete(this.contact._id).subscribe(
         $id => this.delegate?.delete($id)
-    ) }
+    ); else throw 1 }
 }
