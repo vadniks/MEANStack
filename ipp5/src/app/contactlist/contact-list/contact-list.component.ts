@@ -17,7 +17,7 @@ export class ContactListComponent implements OnInit {
         contacts => { if (contacts) this.contacts = contacts }
     ) }
 
-    private index(id: string): number
+    index(id: string): number
     { return this.contacts.findIndex(contact => contact._id === id) }
 
     create(): void { this.selected = {
@@ -29,27 +29,29 @@ export class ContactListComponent implements OnInit {
         }
     } }
 
-    add(delegate: ContactListComponent, contact: Contact | null): void {
+    add(contact: Contact | null): void {
         if (!contact) throw 1
-        delegate.contacts.push(contact)
-        delegate.selected = contact
+        this.contacts.push(contact)
+        this.selected = contact
     }
 
-    update(delegate: ContactListComponent, contact: Contact | null): void {
+    update(contact: Contact | null): void {
         if (!contact || !contact._id) throw 1
 
-        const idx = delegate.index(contact._id)
+        const idx = this.index(contact._id)
         if (idx === -1) return
 
-        delegate.contacts[idx] = contact
-        delegate.selected = contact
+        this.contacts[idx] = contact
+        this.selected = contact
     }
 
-    delete(delegate: ContactListComponent, id: string | null): void {
+    delete(id: string | null): void {
         if (!id) throw 1
-        const idx = delegate.index(id)
+
+        const idx = this.index(id)
         if (idx === -1) return
-        delegate.contacts.splice(idx, 1)
-        delegate.selected = null
+
+        this.contacts.splice(idx, 1)
+        this.selected = null
     }
 }
